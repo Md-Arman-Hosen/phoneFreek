@@ -46,4 +46,4 @@ loadPhone(searchText);
 }
 
 
-// loadPhone();
+loadPhone("iphone");
