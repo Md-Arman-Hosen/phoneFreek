@@ -9,7 +9,19 @@ const loadPhone = async (searchText) => {
 const displayPhones = phones => {
     // console.log(phones);
     const phoneContainer = document.getElementById('phone-container')
+    //clear phone container card before adding new card
     phoneContainer.textContent= '';
+    // display show all btn if there are more than 6 phones
+    const showAllContainer = document.getElementById('show-all-container')
+    if(phones.length > 6){
+     showAllContainer.classList.remove('hidden');
+    }
+    else{
+        showAllContainer.classList.add('hidden');
+    }
+
+    // display only first 6 phones
+    phones = phones.slice(0,6);
 
     phones.forEach(phone => {
         console.log(phone);
@@ -26,24 +38,37 @@ const displayPhones = phones => {
                     <h2 class="card-title">${phone.phone_name}</h2>
                     <p>If a dog chews shoes whose shoes does he choose?</p>
                     <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Buy Now</button>
+                        <button class="btn btn-accent">Buy Now</button>
                     </div>
                 </div>
         `;
         // 4:append child
         phoneContainer.appendChild(phoneCard);
-    })
+    });
+    // hide loading spinner
+    toggleLoadingSpinner(false);
 }
 
 // handle search button
 
 const handleSearch = () =>{
     // console.log('search');
+    toggleLoadingSpinner(true);
 const searchField = document.getElementById('search-field');
 const searchText = searchField.value;
 console.log (searchText);
 loadPhone(searchText);
 }
 
+// spinner
+const toggleLoadingSpinner = (isloading)=>{
+    const loadingSpinner = document.getElementById('loading-spinner');
+  if(isloading){
+    loadingSpinner.classList.remove('hidden');
+  }
+  else{
+    loadingSpinner.classList.add('hidden');
+  }
+}
 
 loadPhone("iphone");
