@@ -11,25 +11,25 @@ const displayPhones = (phones,isShowAll) => {
     const phoneContainer = document.getElementById('phone-container')
     //clear phone container card before adding new card
     phoneContainer.textContent= '';
-    // display show all btn if there are more than 6 phones
+    // display show all btn if there are more than 8 phones
     const showAllContainer = document.getElementById('show-all-container')
-    if(phones.length > 6 && !isShowAll){
+    if(phones.length > 8 && !isShowAll){
      showAllContainer.classList.remove('hidden');
     }
     else{
         showAllContainer.classList.add('hidden');
     }
 
-    // display only first 6 phones if not show all
+    // display only first 8 phones if not show all
     if (!isShowAll){
-        phones = phones.slice(0,6);
+        phones = phones.slice(0,8);
     }
 
     phones.forEach(phone => {
         // console.log(phone);
         // 2: create a div
         const phoneCard = document.createElement('div');
-        phoneCard.classList = `card bg-gray-100 p-4 shadow-xl`;
+        phoneCard.classList = `card bg-gray-80 p-4 shadow-xl`;
         // 3: set inner html
         phoneCard.innerHTML = `
          
@@ -38,7 +38,6 @@ const displayPhones = (phones,isShowAll) => {
                 </figure>
                 <div class="card-body">
                     <h2 class="card-title">${phone.phone_name}</h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
                     <div class="card-actions justify-end">
                         <button onclick="handleShowDetails('${phone.slug}')" class="btn btn-accent">Show Details</button>
                     </div>
@@ -109,5 +108,16 @@ const toggleLoadingSpinner = (isloading)=>{
 const handleShowAll = () =>{
  handleSearch(true);
 }
+
+// footer container
+const displayNav = () =>{
+    const footerContainer = document.getElementById('footer-container');
+    const footerDiv = document.createElement('div');
+    footerDiv.innerHTML= ` 
+    <p>Copyright © Arman - All right reserved by MAHP Ltd</p>
+    `;
+    footerContainer.appendChild(footerDiv);
+}
+displayNav();
 
 loadPhone("iphone");
